@@ -1,0 +1,14 @@
+class Solution:
+    def minimumSteps(self, s: str) -> int:
+        swap=0
+        black=0
+        for i in s:
+            if i=="0":
+                swap+=black
+            else:
+                black+=1
+        return swap
+sloution=Solution()
+s="10110001"
+a=solution.minimumnumSteps(s)
+print("minimum number of steps:"+a)

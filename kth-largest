@@ -1,0 +1,8 @@
+class Solution:
+    def findKthLargest(self, nums: List[int], k: int) -> int:
+        nums.sort(reverse=True)
+        return nums[k - 1]
+solution = Solution()
+arr=[1,2,4,7,7,5]
+k=4
+print(solution.getSecondLargest(arr)) #Output 5

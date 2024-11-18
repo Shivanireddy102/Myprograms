@@ -1,0 +1,44 @@
+SLIDING WINDOW:
+Code:-
+from typing import List
+class Solution:
+    def defuseBomb(self, code: List[int], k: int) -> List[int]:
+        result = [0 for _ in range(len(code))]
+        if k == 0:
+            return result
+        start, end, window_sum = 1, k, 0
+        if k < 0:
+            start = len(code) - abs(k)
+            end = len(code) - 1
+        for i in range(start, end + 1):
+            window_sum += code[i]
+        for i in range(len(code)):
+            result[i] = window_sum
+            window_sum -= code[start % len(code)]
+            window_sum += code[(end + 1) % len(code)]
+            start += 1
+            end += 1
+        return result
+
+solution=Solution()
+code=[5,7,1,4]
+k=3
+print(solution.defuseBomb(code,k))       #output:- [12, 10, 16, 13]
+
+
+
+BRUTE FORCE:
+Code:-
+class Solution:
+    def defuseBomb(self, code: List[int], k: int) -> List[int]:
+        result = [0] * len(code)
+        if k == 0:
+            return result
+        for i in range(len(result)):
+            if k > 0:
+                for j in range(i + 1, i + k + 1):
+                    result[i] += code[j % len(code)]
+            else:
+                for j in range(i - abs(k), i):
+                    result[i] += code[(j + len(code)) % len(code)]
+        return result

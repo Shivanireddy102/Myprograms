@@ -1,0 +1,12 @@
+from typing import List
+class Solution:
+    def Largestelement(self,arr):
+        largest=arr[0]
+        for num in arr:
+            if num>largest:
+                largest=num
+        return largest
+solution = Solution()
+arr = [3, 2, 1, 7, 7, 5, 4, 4]
+print("The largest element is:", solution.Largestelement(arr)) #output:- The largest element is: 7
+

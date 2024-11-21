@@ -1,0 +1,31 @@
+from typing import List
+class Solution:
+    def countUnguarded(self, m: int, n: int, guards: List[List[int]], walls: List[List[int]]) -> int:
+        grid = [['.'] * n for _ in range(m)]
+        for guard in guards:
+            grid[guard[0]][guard[1]] = 'G'
+        for wall in walls:
+            grid[wall[0]][wall[1]] = 'W'
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        for guard in guards:
+            for direction in directions:
+                x, y = guard
+                while True:
+                    x += direction[0]
+                    y += direction[1]
+                    if x < 0 or x >= m or y < 0 or y >= n or grid[x][y] in ('G', 'W'):
+                        break
+                    if grid[x][y] == '.':
+                        grid[x][y] = 'U'  
+        unguarded_count = 0
+        for i in range(m):
+            for j in range(n):
+                if grid[i][j] == '.':
+                    unguarded_count += 1
+        return unguarded_count
+solution=Solution()
+m=4
+n=6
+guards =[[0,0],[1,1],[2,3]]
+walls =[[0,1],[2,2],[1,4]]
+print(solution.countUnguarded(m,n,guards,walls))      #output:- 7

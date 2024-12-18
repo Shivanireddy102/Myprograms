@@ -1,0 +1,12 @@
+import random
+numbers = [random.randint(1, 20) for _ in range(20)]
+print("random Numbers:")
+print(numbers)
+n = len(numbers)
+for i in range(n):
+    for j in range(0, n-i-1):
+        if numbers[j] > numbers[j+1]:
+            numbers[j], numbers[j+1] = numbers[j+1], numbers[j]
+print("sorted Numbers:")
+print(numbers)
+
